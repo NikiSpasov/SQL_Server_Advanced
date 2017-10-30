@@ -55,10 +55,10 @@ public class StartUp
 
         StringBuilder sb = new StringBuilder();
 
-        Department highestAverageDept = departments.OrderByDescending(x => x.AverageSalary).FirstOrDefault();
+        Department highestAverageDept = departments.OrderByDescending(x => x.AverageSalary).ThenBy(y => y.Name).FirstOrDefault();
 
         sb.AppendLine($"Highest Average Salary: {highestAverageDept.Name}");
-        foreach (var employee in highestAverageDept.Employees.OrderByDescending(x => x.Salary))
+        foreach (var employee in highestAverageDept.Employees.OrderByDescending(x => x.Salary).ThenBy(y=>y.Name))
         {
             sb.AppendLine($"{employee.Name} {employee.Salary:0.00} {employee.Email} {employee.Age}");
         }
