@@ -1,0 +1,48 @@
+
+//CHECK MinionsDB for errors in minionsVillians insert for duplicates and make composite primary key
+
+string connectionString = "Server=.;Database=MinionsDB;Integrated security = True"
+var connection = new SqlConnection(connectionString);
+
+int villianId = int.Pares(Console.ReadLine());
+
+connection.Open();
+
+using(connection)
+{
+	string villianQuery = "SELECT Name FROM Villains WHERE Id = @villianId";				
+    var villiandCommand = new SqlCommand(villianQuery, connection);
+	
+	villiandCommand.Parameters.AddWithValue("@villianId", villianId);
+	
+	var reader = villiandCommand.ExecuteReader();
+	while(reader.Read())
+	{
+		Console.ReadLine($"Villain: {reader[0]}")
+	}
+	reader.Close();
+	
+	string minionsQuery = "SELECT Name, Age FROM Minions AS m" +
+					      "JOIN MinionsVillains AS mv ON m.Id = mv.Id" +
+					      "WHERE mv.VillainId = @villainId";
+						  
+	var minionsCommand = new SqlCommand(minionsQuery, connection);
+	
+	minionsCommand.Parameters.AddWithValue("@villianId", villianId);
+	
+	reader = minionsCommand.ExecuteReader();
+	int counter = 1;
+	while(reader.Read())
+	{
+		Console.WriteLine($"{counter} {reader[0]} {reader[1]}")
+		counter++;
+	}
+	reader.Close();
+	}
+
+
+static void ExecuteCommand(string command, SqlConnection connection)
+{
+	var sql = new SqlCommand(command, connection);
+	sql.ExecuteNonQuery();
+}

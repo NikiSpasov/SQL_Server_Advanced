@@ -7,7 +7,7 @@ public class StartUp
     {
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
         {
-            ["Data Source"] = ".", //Сменете точка с името на вашия SQL Server, ако не работи с нея.
+            ["SERVER"] = "NikiThinkPad\\SQLEXPRESS", 
             ["Integrated Security"] = true
         };
 
