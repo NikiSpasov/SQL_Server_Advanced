@@ -6,4 +6,5 @@ public class StartUp
     {
         Console.WriteLine();
     }
+    //scaffold-DbContext -Connection "Server=Niki\SQLExpress;Database=SoftUni;Integrated security=True" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data/Models
 }
