@@ -12,7 +12,7 @@
         public DateTime? Birthday { get; set; }
 
         public ICollection<Homework> HomeworkSubmissions { get; set; } = new List<Homework>();
-        public ICollection<StudentCourse> CourseEnrollments = new List<StudentCourse>();
+        public ICollection<StudentCourse> CourseEnrollments { get; set; } = new List<StudentCourse>();
     }
 }
 

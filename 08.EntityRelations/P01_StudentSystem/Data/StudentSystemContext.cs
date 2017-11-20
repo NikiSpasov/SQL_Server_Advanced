@@ -14,7 +14,6 @@
         public DbSet<Resource> Resources { get; set; }
         public DbSet<Homework> HomeworkSubmissions { get; set; }
         public DbSet<StudentCourse> StudentCourses { get; set; }
-        //public HomeworkSubmission HomeworkSubmissions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -88,13 +87,6 @@
                     .HasForeignKey(h => h.StudentId);
 
             });
-
-            //model.Entity<HomeworkSubmission>(entity =>
-            //{
-            //    entity.HasOne(e => e.Student)
-            //        .WithMany(s => s.HomeworkSubmissions)
-            //        .HasForeignKey(hs => hs.StudentId);
-            //});
 
             model.Entity<StudentCourse>(entity =>
             {

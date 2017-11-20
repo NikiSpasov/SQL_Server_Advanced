@@ -14,7 +14,7 @@
 
         public ICollection<Resource> Resources { get; set; } = new List<Resource>();
         public ICollection<Homework> HomeworkSubmissions { get; set; } = new List<Homework>();
-        public ICollection<StudentCourse> StudentsEnrolled = new List<StudentCourse>();
+        public ICollection<StudentCourse> StudentsEnrolled { get; set; } = new List<StudentCourse>();
     }
 }
 
