@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FirstDemo.Data.Models;
+﻿using P02_DatabaseFirst.Data;
 
 
 public class StartUp
@@ -8,23 +7,6 @@ public class StartUp
     {
         using (var db = new SoftUniDbContext())
         {
-            var GGG = db.Towns.SingleOrDefault(t => t.Name == "GGG");
-
-            db.Towns.Remove(GGG);
-
-            var town = new Town()
-            {
-                Name = "GGG"
-            };
-
-            var address = new Address()
-            {
-                AddressText = "ul. TeTukaTe 3"
-            };
-
-            town.Addresses.Add(address);
-
-            db.Towns.Add(town);
 
             db.SaveChanges(); //very important, it goes to the DB!
 
