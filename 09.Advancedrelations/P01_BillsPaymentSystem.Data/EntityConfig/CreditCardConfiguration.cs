@@ -9,7 +9,10 @@
         public void Configure(EntityTypeBuilder<CreditCard> builder)
         {
             builder.HasKey(e => e.CreditCardId);
-            builder.Ignore("LimitLeft");
+
+            builder.Ignore(e => e.LimitLeft);
+
+            builder.Ignore(e => e.PaymentMethodId);
         }
     }
 }

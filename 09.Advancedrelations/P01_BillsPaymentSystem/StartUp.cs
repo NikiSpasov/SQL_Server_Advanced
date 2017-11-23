@@ -4,7 +4,7 @@
 
     public class StartUp
     {
-        static void Main()
+        public static void Main()
         {
             using (var db = new BillsPaymentsSystemContext())
             {

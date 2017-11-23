@@ -2,7 +2,6 @@
 {
     using Microsoft.EntityFrameworkCore;
     using P01_BillsPaymentSystem.Data.EntityConfig;
-    using P01_StudentSystem;
 
     public class BillsPaymentsSystemContext : DbContext
     {

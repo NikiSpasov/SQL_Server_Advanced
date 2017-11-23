@@ -1,8 +1,9 @@
 ﻿namespace P01_BillsPaymentSystem.Data.Models
 {
-    public enum Type
+    public enum PaymenthMethodType
     {
         BankAccount,
         CreditCard
     }
 }
+

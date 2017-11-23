@@ -9,13 +9,18 @@
         public void Configure(EntityTypeBuilder<BankAccount> builder)
         {
             builder.HasKey(ba => ba.BankAccountId);
+
             builder.Property(e => e.BankName)
+                .IsRequired()
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(e => e.SWIFTCode)
+            builder.Property(e => e.SwitCode)
+                .IsRequired()
                 .HasMaxLength(20)
-                .IsRequired();
+                .IsUnicode(false);
+
+            builder.Ignore(e => e.PaymentMethodId);
         }
     }
 }
