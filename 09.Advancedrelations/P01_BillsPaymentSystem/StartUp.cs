@@ -1,5 +1,6 @@
 ﻿namespace P01_BillsPaymentSystem.App
 {
+    using Microsoft.EntityFrameworkCore;
     using P01_BillsPaymentSystem.Data;
 
     public class StartUp
@@ -8,7 +9,8 @@
         {
             using (var db = new BillsPaymentsSystemContext())
             {
-                db.Database.EnsureCreated();
+                db.Database.EnsureDeleted();
+                db.Database.Migrate();
             }
         }
     }

@@ -100,8 +100,12 @@ namespace P01_BillsPaymentSystem.Data.Migrations
                 name: "IX_PaymentMethod_UserId_BankAccountId_CreditCardId",
                 table: "PaymentMethod",
                 columns: new[] { "UserId", "BankAccountId", "CreditCardId" },
-                unique: true,
-                filter: "[BankAccountId] IS NOT NULL AND [CreditCardId] IS NOT NULL");
+                unique: true);
+
+            migrationBuilder.Sql(
+                "ALTER Table PaymentMethods ADD CONSTRAINT CK_CreditCard_BankAccountId CHECK " +
+                "(CreditCardId IS NULL AND BankAccountId IS NOT NULL) OR " +
+                "(CreditCardId IS NOT NULL AND BankAccountId IS NULL)");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
