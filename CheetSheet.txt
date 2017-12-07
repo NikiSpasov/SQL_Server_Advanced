@@ -1,0 +1,13 @@
+Automapper  
+Automapper.Extensions.Microsoft.DependencyInjection                                                           
+
+using Automapper.QueryableExtensions 
+
+                                                            
+Microsoft.EntityFrameworkCore                                   
+Microsoft.EntityFrameworkCore.Tools   
+Microsoft.EntityFrameworkCore.Design                                                                              
+Microsoft.EntityFrameworkCore.SqlServer                
+Microsoft.Extensions.DependencyInjection        
+                 
+                                
