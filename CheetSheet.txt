@@ -4,10 +4,20 @@ Automapper.Extensions.Microsoft.DependencyInjection
 using Automapper.QueryableExtensions 
 
                                                             
-Microsoft.EntityFrameworkCore                                   
-Microsoft.EntityFrameworkCore.Tools   
-Microsoft.EntityFrameworkCore.Design                                                                              
-Microsoft.EntityFrameworkCore.SqlServer                
-Microsoft.Extensions.DependencyInjection        
+install-package Microsoft.EntityFrameworkCore                                   
+install-package Microsoft.EntityFrameworkCore.Tools   
+install-package Microsoft.EntityFrameworkCore.Design                                                                              
+install-package Microsoft.EntityFrameworkCore.SqlServer                
+install-package Microsoft.Extensions.DependencyInjection  
+
+install-package Automapper  
+install-package Automapper.Extensions.Microsoft.DependencyInjection       
                  
                                 
+JSON and XML:
+Json.Net library - popular high-performance JSON framework for .NET
+
+XDocument
+XElement
+using System.Xml.Linq
+install-package NewTonsoft.Json
