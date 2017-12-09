@@ -21,3 +21,83 @@ XDocument
 XElement
 using System.Xml.Linq
 install-package NewTonsoft.Json
+
+Deserialize woth xml:
+   var serializer = new XmlSerializer(typeof(CardDto[]), new XmlRootAttribute("Cards"));
+   var deserializedCards = (CardDto[])serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(xmlString)));
+;
+
+
+
+
+FOR Configurations:
+<T>Configuration: IEntityTypeConfiguration<T>
+
+
+[IMPORTANT DATA ANNOTATIONS]:
+
+  [Required]
+ [MaxLength(128)]
+ [Range(0, 120)]
+ [StringLength(2, MinimumLength = 2)]
+ [Range(typeof(decimal), "0", "79228162514264337593543950335M")]
+ [RegularExpression(@"^[A-Z]{2}\d{1,6}$")]
+ 
+ 
+FOR VALIDATION:
+	    private static bool IsValid(object obj)
+	    {
+            var validationContext = new ValidationContext(obj);
+	        var validationResults = new List<ValidationResult>();
+
+	        var isValid = Validator.TryValidateObject(obj, validationContext, validationResults, true);
+
+	        return isValid;
+	    }
+		
+
+DESERIZLIZE NULLS:
+var deserializedTrains = JsonConvert.DeserializeObject<TrainDto[]>(jsonString, new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            });
+		
+		
+		
+COOL RESETDB Method:
+
+    private static void ResetDatabase(StationsDbContext context, bool shouldDeleteDatabase = false)
+	    {
+	        if (shouldDeleteDatabase)
+	        {
+	            context.Database.EnsureDeleted();
+	            context.Database.EnsureCreated();
+	        }
+
+	        context.Database.EnsureCreated();
+
+	        var disableIntegrityChecksQuery = "EXEC sp_MSforeachtable @command1='ALTER TABLE ? NOCHECK CONSTRAINT ALL'";
+	        context.Database.ExecuteSqlCommand(disableIntegrityChecksQuery);
+
+	        var deleteRowsQuery = "EXEC sp_MSforeachtable @command1='DELETE FROM ?'";
+	        context.Database.ExecuteSqlCommand(deleteRowsQuery);
+
+	        var enableIntegrityChecksQuery = "EXEC sp_MSforeachtable @command1='ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL'";
+	        context.Database.ExecuteSqlCommand(enableIntegrityChecksQuery);
+
+	        var reseedQuery = "EXEC sp_MSforeachtable @command1='DBCC CHECKIDENT(''?'', RESEED, 0)'";
+	        try
+	        {
+	            context.Database.ExecuteSqlCommand(reseedQuery);
+	        }
+	        catch (SqlException) // OrderItems table has no identity column, which isn't a problem
+	        {
+	        }
+	    }
+		
+DATETIME:
+                var departureTime = DateTime.ParseExact(tripDto.DepartureTime, "dd/MM/yyy HH:mm", CultureInfo.InvariantCulture);
+				
+                var arrivalTime = DateTime.ParseExact(tripDto.ArrivalTime, "dd/MM/yyy HH:mm", CultureInfo.InvariantCulture);
+                    
+				var timeDifference = TimeSpan.ParseExact(tripDto.TimeDifference, @"hh\:mm", CultureInfo.InvariantCulture);
